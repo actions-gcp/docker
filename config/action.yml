@@ -1,0 +1,23 @@
+name: docker-config
+description: |
+  Generate a Docker configuration file with access
+  to Container Registry using a temporary OAuth 2.0
+  access token
+inputs:
+  config:
+    description: Config file path
+    required: true
+  key:
+    description: Service account JSON key
+    required: true
+runs:
+  using: docker
+  image: docker://actionsgcp/actions:latest
+  args:
+    - docker-config
+    - ${{ inputs.config }}
+  env:
+    SERVICE_ACCOUNT_KEY: ${{ inputs.key }}
+branding:
+  color: blue
+  icon: box
